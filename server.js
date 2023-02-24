@@ -6,41 +6,31 @@ const cors = require('cors');
 const server = express();
 server.use(cors());
 
-const PORT = 3000;
+const PORT = 3000; // http://localhost:3000/
 
 
-const data = require('./Movie Data/data.json');
+//const data = require('./Movie Data/data.json');
 
-function MovieInfo(data) {
-    this.title = data.title;
-    this.genre_ids = data.genre_ids;
-    this.original_language = data.original_language;
-    this.original_title = data.original_title;
-    this.poster_path = data.poster_path;
-    this.video = data.video;
-    this.vote_average = data.vote_average;
-    this.overview = data.overview;
-    this.release_date = data.release_date;
-    this.vote_count = data.vote_count;
-    this.id = data.id;
-    this.adult = data.adult;
-    this.backdrop_path = data.backdrop_path;
-    this.popularity = data.popularity;
-    this.media_type = data.media_type;
+function MovieInfo(title , poster_path , overview ) {
+    this.title = title;
+    this.poster_path = poster_path;
+    this.overview = overview;
 }
 
 //Home route
 server.get('/', (req, res) => {
 
-    let info = `title: ${data.title},<br> poster_path: ${data.poster_path},<br> overview: ${data.overview}`
+    //let info = `title: ${data.title},<br> poster_path: ${data.poster_path},<br> overview: ${data.overview}`
+    const data = require('./Movie Data/data.json');
+    const info = new MovieInfo(data.title, data.poster_path, data.overview);
     res.send(info);
 
-})
+});
 
 
 // Favorite Page
 server.get('/favorite', (req, res) => {
-    res.send('Welcome to Favorite Page.');
+    res.status(200).send('Welcome to Favorite Page.');
 });
 
 
