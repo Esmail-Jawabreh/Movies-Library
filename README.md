@@ -2,13 +2,19 @@
 
 **Esmail Jawabreh**
 
-## WRRC
-![WRRC](WRRC.png)
+
+## WRRC Lab-11
+![WRRC](Pics/WRRC-Lab11.png)
+## WRRC Lab-12
+![WRRC](Pics/WRRC-Lab12.png)
+
 
 ## Overview
-### the home Page Endpoint gets data from json file and shows specific data from it,
+### the Home Page Endpoint gets data from json file and shows specific data from it,
 ### the Favorite Page Endpoint shows only "Welcome to Favorite Page",
-
+### the Trending Page Endpoint gets data from API and shows the trending movies information,
+### the Search Page Endpoint gets data from API and shows all movies.
+ 
 ## Getting Started
 ## What are the steps that a user must take in order to build this app on their own machine and get it running? 
 ###
