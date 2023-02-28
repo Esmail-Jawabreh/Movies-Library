@@ -36,12 +36,14 @@ function MovieAPI(id, title, release_date, poster_path, overview) {
 // routes
 server.get('/', homeHandler); // Home page
 server.get('/favorite', favoriteHandler); // Favorite Page
+
 server.get('/trending', trendingHandler); // Trending Page
 server.get('/search', searchHandler); // Search Page
 server.get('/tvshows', tvshowsHandler); // Tv shows Page
-server.get('/actors', actorsHandler); //Actors Page
+server.get('/actors', actorsHandler); // Actors Page
 
-
+server.get('/addMovie', addMovieHandler); // addMovie Page
+server.get('/getMovies', getMoviesHandler); // getMovies
 
 
 
@@ -115,6 +117,15 @@ async function actorsHandler(req, res) {
     // let axiosRes = await axios.get(url);
     res.send('Nothing here yet.');
 }
+
+function addMovieHandler(req, res){
+
+}
+
+function getMoviesHandler(req,res){
+
+}
+
 
 
 // Function to handle server error (status 500)
