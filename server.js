@@ -3,17 +3,19 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const pg = require('pg');
 
 const server = express();
 server.use(cors());
 //server.use(errorHandler);
+server.use(express.json());
 
 const PORT = 3000; // http://localhost:3000/
 
 require('dotenv').config();
 
 
-
+const client = new pg.Client(process.env.DATABASE_URL);
 
 
 function MovieIJSON(title, poster_path, overview) {
@@ -42,8 +44,8 @@ server.get('/search', searchHandler); // Search Page
 server.get('/tvshows', tvshowsHandler); // Tv shows Page
 server.get('/actors', actorsHandler); // Actors Page
 
-server.get('/addMovie', addMovieHandler); // addMovie Page
-server.get('/getMovies', getMoviesHandler); // getMovies
+server.post('/addMovie', addMovieHandler); // addMovie Page
+server.get('/getMovies', getMoviesHandler); // getMovies page 
 
 
 
@@ -118,12 +120,30 @@ async function actorsHandler(req, res) {
     res.send('Nothing here yet.');
 }
 
-function addMovieHandler(req, res){
+function addMovieHandler(req, res) {
+    const movie = req.body;
+    const sql = `INSERT INTO addMovie (title,comments) VALUES ($1,$2) RETURNING *;`;
 
+    const values = [movie.title, movie.comments];
+
+    client.query(sql, values)
+        .then((data) => {
+            res.send("your data was added.");
+        })
+        .catch((err) => {
+            handleServerError(err, req, res, next);
+        })
 }
 
-function getMoviesHandler(req,res){
-
+function getMoviesHandler(req, res) {
+    const sql = `SELECT * FROM addMovie`;
+    client.query(sql)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            handleServerError(err, req, res, next);
+        })
 }
 
 
@@ -150,7 +170,9 @@ server.use(handlePageNotFoundError);
 
 
 
-
-server.listen(PORT, () => {
-    console.log(`Port ${PORT} is ready.`);
-})
+client.connect()
+    .then(() => {
+        server.listen(PORT, () => {
+            console.log(`Port ${PORT} is ready.`);
+        })
+    })
