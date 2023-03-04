@@ -7,7 +7,7 @@
 ![WRRC](Pics/WRRC-Lab11.png)
 ## WRRC Lab-12
 ![WRRC](Pics/WRRC-Lab12.png)
-## WRRC Lab-13
+## WRRC Lab-13 & Labb-14
 ![WRRC](Pics/WRRC-Lab13.png)
 
 
@@ -17,7 +17,9 @@
 ### the Trending Page Endpoint gets data from API and shows the trending movies information,
 ### the Search Page Endpoint gets data from API and shows all movies,
 ### the add Movie page Endpoint post request to save a specific movie to database,
-### and the get Movies page Endpoint Create a get request to get all the data from the database.
+### the get Movies page Endpoint Create a get request to get all the data from the database.
+### update method on udate id Endpoint to update specific data from tha DataBase,
+### and delete methon on delete id Endpoint to delete specific data from tha DataBase.
  
 ## Getting Started
 ## What are the steps that a user must take in order to build this app on their own machine and get it running? 
@@ -55,4 +57,5 @@
 ## What are the features included in you app?
 ###
 ### my web server include support for JavaScript,
-### and two functions to handle error 404 and 500.
+### and two functions to handle errors,
+### with full CRUD functionality.
