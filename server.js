@@ -46,8 +46,8 @@ server.get('/actors', actorsHandler); // Actors Page
 
 server.post('/addMovie', addMovieHandler); // addMovie Page
 server.get('/getMovies', getMoviesHandler); // getMovies page 
-
-
+server.put('/UPDATE/:id', updateIdHandler);
+server.delete('/DELETE/:id', deleteIdHandler);
 
 // Functions Handlers
 
@@ -140,6 +140,32 @@ function getMoviesHandler(req, res) {
     client.query(sql)
         .then((data) => {
             res.send(data);
+        })
+        .catch((err) => {
+            handleServerError(err, req, res, next);
+        })
+}
+
+function updateIdHandler(req, res) {
+    const id = req.params.id;
+    const sql = `UPDATE addMovie SET title=$1, comments=$2 WHERE id=${id} RETURNING *`;
+    const values = [movie.title, movie.comments];
+    client.query(sql, values)
+        .then((data) => {
+            res.status(200).send(data.rows);
+        })
+        .catch((err) => {
+            handleServerError(err, req, res, next);
+        })
+}
+
+function deleteIdHandler(req, res) {
+    //console.log(req.params.id); //to get the path prameters
+    const id = req.params.id;
+    const sql = `DELETE FROM addMovie WHERE id=${id}`;
+    client.query(sql)
+        .then((data) => {
+            res.status(204).json({});
         })
         .catch((err) => {
             handleServerError(err, req, res, next);
