@@ -7,7 +7,7 @@
 ![WRRC](Pics/WRRC-Lab11.png)
 ## WRRC Lab-12
 ![WRRC](Pics/WRRC-Lab12.png)
-## WRRC Lab-13 & Labb-14
+## WRRC Lab-13 & Lab-14
 ![WRRC](Pics/WRRC-Lab13.png)
 
 
