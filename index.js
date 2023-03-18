@@ -29,23 +29,31 @@ function Movie(id, title, release_date, poster_path, overview, name) {
 
 
 
+
 // routes
-server.get('/', homeHandler); // Home page
-server.get('/favorite', favoriteHandler); // Favorite Page
 
-server.get('/trending', trendingHandler); // Trending Page
-server.get('/search', searchHandler); // Search Page
-server.get('/network', networkHandler); // Tv shows Page
-server.get('/people', peopleHandler); // Actors Page
+server.get('/', homeHandler); 
+server.get('*', handlePageNotFoundError);
+server.get('/favorite', favoriteHandler); 
 
-server.post('/addMovie', addMovieHandler); // addMovie Page
-server.get('/getMovie', getMovieHandler); // getMovies page 
-server.put('/UPDATE/:id', updateIdHandler);
-server.delete('/DELETE/:id', deleteIdHandler);
+server.get('/trending', trendingHandler); 
+server.get('/search', searchHandler); 
+server.get('/network', networkHandler); 
+server.get('/people', peopleHandler); 
 
 server.get('/getMovies', getMoviesHandler);
 
-server.get('*', handlePageNotFoundError);
+server.post('/getMovie', addMovieHandler);
+server.put('/getMovie/:id', updateIdHandler); 
+server.delete('/getmovie/:id', deleteIdHandler);
+server.get('/getmovie/:id', getMovieHandler); 
+
+
+
+// Add error handling middleware to the server
+
+server.use(handleServerError);
+server.use(handlePageNotFoundError);
 
 
 
@@ -231,11 +239,6 @@ function handleServerError(error, req, res) {
 function handlePageNotFoundError(req, res) {
     res.status(404).send('Page not found.');
 }
-
-
-// Add error handling middleware to the server
-server.use(handleServerError);
-server.use(handlePageNotFoundError);
 
 
 
