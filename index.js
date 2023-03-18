@@ -26,14 +26,14 @@ function Movie(id, title, release_date, poster_path, overview, name) {
     this.overview = overview;
 }
 
-
+const APIKey = process.env.APIKey;
 
 
 
 // routes
 
 server.get('/', homeHandler); 
-server.get('*', handlePageNotFoundError);
+// server.get('*', handlePageNotFoundError);
 server.get('/favorite', favoriteHandler); 
 
 server.get('/trending', trendingHandler); 
@@ -77,7 +77,7 @@ function trendingHandler(req, res) {
             .then((result) => {
 
                 let APIdata = result.data.results.map((item) => {
-                    let APIinfo = new Movies(item.id, item.title, item.release_date, item.poster_path, item.overview, item.name);
+                    let APIinfo = new Movie(item.id, item.title, item.release_date, item.poster_path, item.overview, item.name);
                     return APIinfo
                 })
                 res.send(APIdata);
