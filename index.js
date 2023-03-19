@@ -32,21 +32,21 @@ const APIKey = process.env.APIKey;
 
 // routes
 
-server.get('/', homeHandler); 
+server.get('/', homeHandler);
 // server.get('*', handlePageNotFoundError);
-server.get('/favorite', favoriteHandler); 
+server.get('/favorite', favoriteHandler);
 
-server.get('/trending', trendingHandler); 
-server.get('/search', searchHandler); 
-server.get('/network', networkHandler); 
-server.get('/people', peopleHandler); 
+server.get('/trending', trendingHandler);
+server.get('/search', searchHandler);
+server.get('/network', networkHandler);
+server.get('/people', peopleHandler);
 
 server.get('/getMovies', getMoviesHandler);
 
 server.post('/getMovie', addMovieHandler);
-server.put('/getMovie/:id', updateIdHandler); 
-server.delete('/getmovie/:id', deleteIdHandler);
-server.get('/getmovie/:id', getMovieHandler); 
+server.put('/getMovie/:id', updateIdHandler);
+server.delete('/getMovie/:id', deleteIdHandler);
+server.get('/getMovie/:id', getMovieHandler);
 
 
 
@@ -126,7 +126,7 @@ function networkHandler(req, res) {
             })
     }
     catch (error) {
-        handleServerError(err, req, res);
+        handleServerError(error, req, res);
     }
 }
 
@@ -143,7 +143,7 @@ function peopleHandler(req, res) {
             })
     }
     catch (error) {
-        handleServerError(err, req, res);
+        handleServerError(error, req, res);
     }
 }
 
@@ -156,8 +156,8 @@ function addMovieHandler(req, res) {
         .then((data) => {
             res.send("added successfully");
         })
-        .catch((err) => {
-            handleServerError(err, req, res);
+        .catch((error) => {
+            handleServerError(error, req, res);
         })
 }
 
@@ -168,8 +168,8 @@ function getMovieHandler(req, res) {
         .then((data) => {
             res.send(data.rows);
         })
-        .catch((err) => {
-            handleServerError(err, req, res);
+        .catch((error) => {
+            handleServerError(error, req, res);
         })
 }
 
@@ -185,12 +185,12 @@ function updateIdHandler(req, res) {
                 .then((data) => {
                     res.send(data.rows);
                 })
-                .catch((err) => {
-                    handleServerError(err, req, res);
+                .catch((error) => {
+                    handleServerError(error, req, res);
                 })
         })
-        .catch((err) => {
-            handleServerError(err, req, res);
+        .catch((error) => {
+            handleServerError(error, req, res);
         })
 }
 
@@ -205,12 +205,12 @@ function deleteIdHandler(req, res) {
                 .then((data) => {
                     res.send(data.rows);
                 })
-                .catch((err) => {
-                    handleServerError(err, req, res);
+                .catch((error) => {
+                    handleServerError(error, req, res);
                 })
         })
-        .catch((err) => {
-            handleServerError(err, req, res);
+        .catch((error) => {
+            handleServerError(error, req, res);
         })
 }
 
@@ -220,8 +220,8 @@ function getMoviesHandler(req, res) {
         .then((data) => {
             res.send(data.rows);
         })
-        .catch((err) => {
-            handleServerError(err, req, res);
+        .catch((error) => {
+            handleServerError(error, req, res);
         })
 }
 
