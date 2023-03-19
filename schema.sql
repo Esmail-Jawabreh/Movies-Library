@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS addMovie ;
+
 CREATE TABLE IF NOT EXISTS addMovie (
     id SERIAL PRIMARY KEY,
     movieTitle VARCHAR(255),
@@ -6,3 +8,4 @@ CREATE TABLE IF NOT EXISTS addMovie (
     overview VARCHAR(1000),
     comment VARCHAR(1000)
 );
+
