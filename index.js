@@ -43,9 +43,9 @@ server.get('/people', peopleHandler);
 
 server.get('/getMovies', getMoviesHandler);
 
-server.post('/getMovie', addMovieHandler);
-server.put('/getMovie/:id', updateIdHandler);
-server.delete('/getMovie/:id', deleteIdHandler);
+server.post('/addMovie', addMovieHandler);
+server.put('/updateMovie/:id', updateIdHandler);
+server.delete('/deleteMovie/:id', deleteIdHandler);
 server.get('/getMovie/:id', getMovieHandler);
 
 
@@ -154,7 +154,7 @@ function addMovieHandler(req, res) {
 
     client.query(sql)
         .then((data) => {
-            res.send("added successfully");
+            res.send("Added Successfully ..");
         })
         .catch((error) => {
             handleServerError(error, req, res);
